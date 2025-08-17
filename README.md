@@ -24,6 +24,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Package Manager**: npm
 - **Routing**: React Router DOM
 - **Icons**: Lucide React
+- **Testing**: Vitest + React Testing Library
 - **Linting**: ESLint
 - **Code Formatting**: Prettier (recommended)
 
@@ -56,6 +57,9 @@ src/
 │   └── index.ts
 ├── utils/              # Utility functions
 │   └── helpers.ts
+├── test/               # Test utilities and setup
+│   ├── setup.ts        # Test environment setup
+│   └── test-utils.tsx  # Custom test utilities
 ├── App.tsx             # Main app component with routing
 ├── main.tsx            # Entry point
 └── index.css           # Global styles
@@ -96,6 +100,10 @@ src/
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 - `npm run type-check` - Run TypeScript type checking
+- `npm test` - Run tests in watch mode
+- `npm run test:run` - Run tests once
+- `npm run test:ui` - Run tests with UI interface
+- `npm run test:coverage` - Run tests with coverage report
 
 ## 🎯 Application Structure
 
@@ -214,6 +222,45 @@ The website is fully responsive with breakpoints:
 - Focus management
 - Color contrast compliance
 - Screen reader friendly
+
+## 🧪 Testing
+
+The project includes comprehensive unit tests using Vitest and React Testing Library:
+
+### Test Structure
+- **Unit Tests**: Individual component and function tests
+- **Integration Tests**: Component interaction tests
+- **Utility Tests**: Helper function validation
+- **Admin Tests**: Admin panel functionality tests
+
+### Test Coverage
+- **Components**: All UI components are tested for rendering and interactions
+- **Utilities**: Helper functions have comprehensive test coverage
+- **Forms**: Form validation and submission logic is thoroughly tested
+- **Routing**: App routing and navigation is tested
+- **Admin Panel**: All admin functionality is tested
+
+### Running Tests
+```bash
+# Run tests in watch mode
+npm test
+
+# Run tests once
+npm run test:run
+
+# Run tests with UI
+npm run test:ui
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+### Test Files Location
+- Component tests: `src/components/__tests__/`
+- Admin tests: `src/admin/__tests__/`
+- Utility tests: `src/utils/__tests__/`
+- App tests: `src/__tests__/`
+- Test utilities: `src/test/`
 
 ## 🔧 Admin Panel Features
 

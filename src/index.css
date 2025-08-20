@@ -14,6 +14,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
+    background-color: #ffffff;
+    color: #0f172a;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark {
+    background-color: #0f172a;
+    color: #f8fafc;
   }
 
   * {
@@ -123,9 +131,27 @@
   background: #94a3b8;
 }
 
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
 /* Focus styles for accessibility */
 *:focus {
   outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.dark *:focus {
+  outline: 2px solid #60a5fa;
   outline-offset: 2px;
 }
 
@@ -143,4 +169,14 @@
 ::-moz-selection {
   background-color: #3b82f6;
   color: white;
+}
+
+.dark ::selection {
+  background-color: #60a5fa;
+  color: #0f172a;
+}
+
+.dark ::-moz-selection {
+  background-color: #60a5fa;
+  color: #0f172a;
 }

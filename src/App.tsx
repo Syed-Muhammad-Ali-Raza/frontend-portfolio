@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -34,21 +35,23 @@ const Portfolio: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        {/* Portfolio Route */}
-        <Route path="/" element={<Portfolio />} />
-        
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="personal-info" element={<PersonalInfo />} />
-          <Route path="skills" element={<SkillsAdmin />} />
-          <Route path="projects" element={<ProjectsAdmin />} />
-          <Route path="social" element={<SocialLinks />} />
-        </Route>
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          {/* Portfolio Route */}
+          <Route path="/" element={<Portfolio />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="personal-info" element={<PersonalInfo />} />
+            <Route path="skills" element={<SkillsAdmin />} />
+            <Route path="projects" element={<ProjectsAdmin />} />
+            <Route path="social" element={<SocialLinks />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 

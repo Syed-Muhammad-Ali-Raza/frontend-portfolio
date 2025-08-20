@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { PROJECTS } from '../data/portfolio';
+import { useTheme } from '../contexts/ThemeContext';
 import Section from './ui/Section';
 import Button from './ui/Button';
 import Icon from './ui/Icon';
@@ -12,6 +13,7 @@ interface ProjectFilter {
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const { isDark } = useTheme();
 
   const filters: ProjectFilter[] = [
     { id: 'all', label: 'All Projects', category: 'all' },
@@ -35,7 +37,7 @@ const Projects: React.FC = () => {
       id="projects"
       title="My Projects"
       subtitle="Some of my recent work and personal projects"
-      className="bg-gray-50"
+      className={isDark ? 'bg-gray-900' : 'bg-gray-50'}
     >
       {/* Filter Buttons */}
       <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -62,11 +64,11 @@ const Projects: React.FC = () => {
       {/* Empty State */}
       {filteredProjects.length === 0 && (
         <div className="text-center py-12">
-                     <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
-             <Icon name="FileText" size={32} className="text-gray-400" />
-           </div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">No projects found</h3>
-          <p className="text-gray-600">Try selecting a different category to see more projects.</p>
+          <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}>
+            <Icon name="FileText" size={32} className="text-gray-400" />
+          </div>
+          <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>No projects found</h3>
+          <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>Try selecting a different category to see more projects.</p>
         </div>
       )}
     </Section>
@@ -79,11 +81,19 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const { isDark } = useTheme();
+  
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+    <div className={`${isDark ? 'bg-gray-800' : 'bg-white'} rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group ${isDark ? 'shadow-soft-dark' : 'shadow-soft'}`}>
       {/* Project Image */}
-      <div className="relative h-48 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
-        <div className="w-16 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+      <div className={`relative h-48 flex items-center justify-center ${
+        isDark 
+          ? 'bg-gradient-to-br from-gray-800 to-gray-700' 
+          : 'bg-gradient-to-br from-blue-100 to-indigo-100'
+      }`}>
+        <div className={`w-16 h-16 rounded-lg shadow-md flex items-center justify-center ${
+          isDark ? 'bg-gray-700' : 'bg-white'
+        }`}>
           <Icon
             name={(
               project.imageUrl.includes('ecommerce') ? 'ShoppingCart' :
@@ -94,7 +104,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               project.imageUrl.includes('recipe') ? 'Utensils' : 'Code'
             ) as any}
             size={32}
-            className="text-gray-600"
+            className={isDark ? 'text-gray-300' : 'text-gray-600'}
           />
         </div>
         {project.featured && (
@@ -107,10 +117,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       {/* Project Content */}
       <div className="p-6">
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+          <h3 className={`text-xl font-semibold mb-2 transition-colors ${
+            isDark 
+              ? 'text-white group-hover:text-blue-400' 
+              : 'text-gray-900 group-hover:text-blue-600'
+          }`}>
             {project.title}
           </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
+          <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
             {project.description}
           </p>
         </div>
@@ -121,13 +135,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             {project.technologies.slice(0, 3).map((tech, index) => (
               <span
                 key={index}
-                className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md font-medium"
+                className={`px-2 py-1 text-xs rounded-md font-medium ${
+                  isDark 
+                    ? 'bg-gray-700 text-gray-300' 
+                    : 'bg-gray-100 text-gray-700'
+                }`}
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > 3 && (
-              <span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-md">
+              <span className={`px-2 py-1 text-xs rounded-md ${
+                isDark 
+                  ? 'bg-gray-700 text-gray-500' 
+                  : 'bg-gray-100 text-gray-500'
+              }`}>
                 +{project.technologies.length - 3} more
               </span>
             )}

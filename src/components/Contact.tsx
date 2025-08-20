@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CONTACT_INFO, SOCIAL_LINKS } from '../data/portfolio';
 import { isValidEmail } from '../utils/helpers';
+import { useTheme } from '../contexts/ThemeContext';
 import Section from './ui/Section';
 import Button from './ui/Button';
 import Icon from './ui/Icon';
@@ -20,6 +21,8 @@ interface FormErrors {
 }
 
 const Contact: React.FC = () => {
+  const { isDark } = useTheme();
+  
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -108,10 +111,10 @@ const Contact: React.FC = () => {
         {/* Contact Information */}
         <div className="space-y-8">
           <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+            <h3 className={`text-2xl font-semibold mb-4 text-gray-900}`}>
               Contact Information
             </h3>
-            <p className="text-gray-600 leading-relaxed">
+            <p className={`leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               I'm passionate about creating exceptional web experiences and always excited to work on new projects. 
               Whether you need a frontend developer for your team or want to discuss a project, let's connect!
             </p>
@@ -121,7 +124,9 @@ const Contact: React.FC = () => {
           <div className="space-y-6">
             {CONTACT_INFO.map((info, index) => (
               <div key={index} className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${
+                  isDark ? 'bg-blue-900/20' : 'bg-blue-100'
+                }`}>
                   <Icon
                     name={info.icon as any}
                     size={24}
@@ -129,7 +134,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900 capitalize">{info.type}</h4>
+                  <h4 className={`font-medium capitalize ${isDark ? 'text-white' : 'text-gray-900'}`}>{info.type}</h4>
                   <a 
                     href={info.link}
                     className="text-blue-600 hover:text-blue-700 transition-colors"
@@ -143,7 +148,7 @@ const Contact: React.FC = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Follow Me</h4>
+            <h4 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Follow Me</h4>
             <div className="flex space-x-4">
               {SOCIAL_LINKS.map((social, index) => (
                 <a
@@ -151,13 +156,21 @@ const Contact: React.FC = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-100 transition-colors group"
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors group ${
+                    isDark 
+                      ? 'bg-gray-800 hover:bg-blue-900/20' 
+                      : 'bg-gray-100 hover:bg-blue-100'
+                  }`}
                   aria-label={`Visit ${social.name}`}
                 >
                   <Icon
                     name={social.icon as any}
                     size={20}
-                    className="text-gray-600 group-hover:text-blue-600 transition-colors"
+                    className={`transition-colors ${
+                      isDark 
+                        ? 'text-gray-400 group-hover:text-blue-400' 
+                        : 'text-gray-600 group-hover:text-blue-600'
+                    }`}
                   />
                 </a>
               ))}
@@ -166,11 +179,11 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className={`${isDark ? 'bg-gray-800' : 'bg-white'} rounded-xl shadow-lg p-8 ${isDark ? 'shadow-soft-dark' : 'shadow-soft'}`}>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name Field */}
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="name" className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                 Name *
               </label>
               <input
@@ -180,8 +193,8 @@ const Contact: React.FC = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                  errors.name ? 'border-red-500' : 'border-gray-300'
-                }`}
+                  isDark ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-gray-900 border-gray-300'
+                } ${errors.name ? 'border-red-500' : ''}`}
                 placeholder="Your full name"
               />
               {errors.name && (
@@ -191,7 +204,7 @@ const Contact: React.FC = () => {
 
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                 Email *
               </label>
               <input
@@ -201,8 +214,8 @@ const Contact: React.FC = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
-                }`}
+                  isDark ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-gray-900 border-gray-300'
+                } ${errors.email ? 'border-red-500' : ''}`}
                 placeholder="your.email@example.com"
               />
               {errors.email && (
@@ -212,7 +225,7 @@ const Contact: React.FC = () => {
 
             {/* Subject Field */}
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="subject" className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                 Subject *
               </label>
               <input
@@ -222,8 +235,8 @@ const Contact: React.FC = () => {
                 value={formData.subject}
                 onChange={handleInputChange}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                  errors.subject ? 'border-red-500' : 'border-gray-300'
-                }`}
+                  isDark ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-gray-900 border-gray-300'
+                } ${errors.subject ? 'border-red-500' : ''}`}
                 placeholder="What's this about?"
               />
               {errors.subject && (
@@ -233,7 +246,7 @@ const Contact: React.FC = () => {
 
             {/* Message Field */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="message" className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                 Message *
               </label>
               <textarea
@@ -243,8 +256,8 @@ const Contact: React.FC = () => {
                 onChange={handleInputChange}
                 rows={5}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none ${
-                  errors.message ? 'border-red-500' : 'border-gray-300'
-                }`}
+                  isDark ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-gray-900 border-gray-300'
+                } ${errors.message ? 'border-red-500' : ''}`}
                 placeholder="Tell me about your project..."
               />
               {errors.message && (

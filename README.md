@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This project features both a public portfolio showcase and an admin panel for content management, showcasing professional development skills with clean, maintainable code and modern web development practices.
 
-## 🚀 Features
+## Features
 
 - **Modern Tech Stack**: React 18, TypeScript, Tailwind CSS, Vite
 - **Dual Interface**: Public portfolio view + Admin panel for content management
@@ -15,7 +15,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Modern UI/UX**: Clean design with smooth interactions
 - **Content Management**: Admin panel for easy portfolio updates
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend Framework**: React 18
 - **Language**: TypeScript
@@ -28,7 +28,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Linting**: ESLint
 - **Code Formatting**: Prettier (recommended)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -65,7 +65,7 @@ src/
 └── index.css           # Global styles
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -105,7 +105,7 @@ src/
 - `npm run test:ui` - Run tests with UI interface
 - `npm run test:coverage` - Run tests with coverage report
 
-## 🎯 Application Structure
+## Application Structure
 
 ### Public Portfolio (`/`)
 The main portfolio page showcasing:
@@ -124,7 +124,7 @@ A comprehensive admin interface for managing portfolio content:
 - **Projects**: Manage portfolio projects with images and links
 - **Social Links**: Configure social media and contact links
 
-## 📝 Configuration
+## Configuration
 
 ### Personal Information
 
@@ -176,7 +176,7 @@ export const SKILLS: Skill[] = [
 ];
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Colors
 
@@ -207,14 +207,14 @@ The project uses Lucide React icons for consistency. You can import additional i
 import { Github, Linkedin, Mail } from 'lucide-react';
 ```
 
-## 📱 Responsive Design
+## Responsive Design
 
 The website is fully responsive with breakpoints:
 - Mobile: < 768px
 - Tablet: 768px - 1024px
 - Desktop: > 1024px
 
-## ♿ Accessibility
+## Accessibility
 
 - Semantic HTML structure
 - Proper ARIA labels
@@ -223,7 +223,7 @@ The website is fully responsive with breakpoints:
 - Color contrast compliance
 - Screen reader friendly
 
-## 🧪 Testing
+## Testing
 
 The project includes comprehensive unit tests using Vitest and React Testing Library:
 
@@ -262,7 +262,7 @@ npm run test:coverage
 - App tests: `src/__tests__/`
 - Test utilities: `src/test/`
 
-## 🔧 Admin Panel Features
+## Admin Panel Features
 
 The admin panel provides a user-friendly interface for:
 - **Real-time Updates**: Instant preview of changes
@@ -271,7 +271,7 @@ The admin panel provides a user-friendly interface for:
 - **Drag & Drop**: Intuitive reordering of skills and projects
 - **Responsive Design**: Works seamlessly on all devices
 
-## 🚀 Deployment
+## Deployment
 
 ### Build for Production
 
@@ -306,7 +306,7 @@ npm run build
 2. Install gh-pages: `npm install --save-dev gh-pages`
 3. Deploy: `npm run deploy`
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature-name`
@@ -314,11 +314,11 @@ npm run build
 4. Push to the branch: `git push origin feature-name`
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [React](https://reactjs.org/) - UI library
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
@@ -327,7 +327,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [React Router](https://reactrouter.com/) - Client-side routing
 - [Lucide React](https://lucide.dev/) - Icon library
 
-## 📞 Support
+##  Support
 
 If you have any questions or need help, feel free to:
 - Open an issue on GitHub
@@ -335,4 +335,3 @@ If you have any questions or need help, feel free to:
 
 ---
 
-Made with ❤️ using React & TypeScript

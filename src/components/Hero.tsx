@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { PERSONAL_INFO } from '../data/portfolio';
 import { scrollToElement } from '../utils/helpers';
+import { useTheme } from '../contexts/ThemeContext';
 import Button from './ui/Button';
 
 const Hero: React.FC = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const { isDark } = useTheme();
   
   const roleTitles = [
     'Frontend Developer',
@@ -27,26 +29,30 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <section id="home" className={`min-h-screen flex items-center justify-center pt-20 ${
+      isDark 
+        ? 'bg-gradient-to-br from-gray-900 to-gray-800' 
+        : 'bg-gradient-to-br from-blue-50 to-indigo-100'
+    }`}>
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className={`text-4xl md:text-6xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
               Hi, I'm{' '}
-              <span className="text-blue-600 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'} bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent`}>
                 {PERSONAL_INFO.name}
               </span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-gray-700 mb-6">
+            <h2 className={`text-xl md:text-2xl mb-6 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
               I'm a{' '}
-              <span className="text-blue-600 font-semibold min-h-[1.5em] inline-block">
+              <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'} font-semibold min-h-[1.5em] inline-block`}>
                 {roleTitles[currentTextIndex]}
               </span>
             </h2>
             
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+            <p className={`text-lg mb-8 max-w-2xl mx-auto lg:mx-0 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               {PERSONAL_INFO.bio}
             </p>
             
@@ -81,35 +87,35 @@ const Hero: React.FC = () => {
           {/* Profile Card */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="bg-white rounded-2xl shadow-xl p-8 max-w-sm">
+              <div className={`${isDark ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-xl p-8 max-w-sm ${isDark ? 'shadow-soft-dark' : 'shadow-soft'}`}>
                 <div className="text-center mb-6">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
                     <span className="text-3xl text-white font-bold">
                       {PERSONAL_INFO.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900">
+                  <h3 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     Available for opportunities
                   </h3>
-                  <p className="text-gray-600 mt-2">
+                  <p className={`mt-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     Let's create amazing web experiences together!
                   </p>
                 </div>
                 
                 <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className={`flex items-center text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     <svg className="w-4 h-4 mr-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>React & TypeScript Expert</span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className={`flex items-center text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     <svg className="w-4 h-4 mr-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>5+ Years Experience</span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className={`flex items-center text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     <svg className="w-4 h-4 mr-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
@@ -129,10 +135,14 @@ const Hero: React.FC = () => {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <button
             onClick={() => handleScrollToSection('about')}
-            className="p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-lg hover:bg-white transition-colors"
+            className={`p-2 rounded-full backdrop-blur-sm shadow-lg transition-colors ${
+              isDark 
+                ? 'bg-gray-800/80 hover:bg-gray-700' 
+                : 'bg-white/80 hover:bg-white'
+            }`}
             aria-label="Scroll to next section"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className={`w-6 h-6 ${isDark ? 'text-gray-300' : 'text-gray-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>

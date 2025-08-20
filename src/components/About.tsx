@@ -1,5 +1,6 @@
 import React from 'react';
 import { PERSONAL_INFO } from '../data/portfolio';
+import { useTheme } from '../contexts/ThemeContext';
 import Section from './ui/Section';
 
 interface Stat {
@@ -14,6 +15,8 @@ interface Feature {
 }
 
 const About: React.FC = () => {
+  const { isDark } = useTheme();
+  
   const stats: Stat[] = [
     { number: "5+", label: "Years Experience" },
     { number: "50+", label: "Projects Completed" },
@@ -55,10 +58,10 @@ const About: React.FC = () => {
         {/* Text Content */}
         <div className="space-y-6">
           <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+            <h3 className={`text-2xl font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
               Who I Am
             </h3>
-            <div className="space-y-4 text-gray-600 leading-relaxed">
+            <div className={`space-y-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               <p>
                 I'm a passionate frontend developer with a strong foundation in modern web technologies. 
                 I specialize in creating responsive, user-friendly applications that deliver exceptional user experiences.
@@ -79,10 +82,10 @@ const About: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+                <div className={`text-3xl md:text-4xl font-bold mb-2 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
                   {stat.number}
                 </div>
-                <div className="text-sm text-gray-600 font-medium">
+                <div className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   {stat.label}
                 </div>
               </div>
@@ -93,14 +96,18 @@ const About: React.FC = () => {
         {/* Profile Image */}
         <div className="flex justify-center lg:justify-end">
           <div className="relative">
-            <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className={`w-80 h-80 rounded-2xl flex items-center justify-center shadow-lg ${
+              isDark 
+                ? 'bg-gradient-to-br from-gray-800 to-gray-700 shadow-soft-dark' 
+                : 'bg-gradient-to-br from-blue-100 to-indigo-100 shadow-soft'
+            }`}>
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
                   <span className="text-4xl text-white font-bold">
                     {PERSONAL_INFO.name.split(' ').map(n => n[0]).join('')}
                   </span>
                 </div>
-                <p className="text-gray-600 font-medium">Professional Photo</p>
+                <p className={`font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Professional Photo</p>
               </div>
             </div>
             
@@ -115,13 +122,17 @@ const About: React.FC = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((feature, index) => (
           <div key={index} className="text-center group">
-            <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-xl flex items-center justify-center text-2xl group-hover:bg-blue-200 transition-colors">
+            <div className={`w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center text-2xl transition-colors ${
+              isDark 
+                ? 'bg-blue-900/20 group-hover:bg-blue-900/30' 
+                : 'bg-blue-100 group-hover:bg-blue-200'
+            }`}>
               {feature.icon}
             </div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-3">
+            <h4 className={`text-lg font-semibold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
               {feature.title}
             </h4>
-            <p className="text-gray-600 text-sm leading-relaxed">
+            <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               {feature.description}
             </p>
           </div>
